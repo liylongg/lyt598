@@ -1,0 +1,30 @@
+spring:
+  #数据库配置
+  datasource:
+    driver-class-name: com.kingbase8.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:kingbase8://172.51.217.229:54321/itd
+    username: system
+    password: ats
+    #数据库连接池
+    hikari:
+      auto-commit: true
+      connection-test-query: SELECT 1
+      maximum-pool-size: 150
+      minimum-idle: 50
+      pool-name: hikari-pool
+      connection-timeout: 500
+      login-timeout: 500
+      validation-timeout: 2000
+      idle-timeout: 60000
+      max-lifetime: 120000
+      initialization-fail-timeout: 1000
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  type-aliases-package: com.tct.itd.hub.entity
+  global-config:
+    db-config:
+      logic-delete-field: dr
+      logic-delete-value: 1
+      logic-not-delete-value: 0
