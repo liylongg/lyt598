@@ -1,0 +1,115 @@
+app:
+  version: 211.35.2.16
+
+server:
+  port: 31803
+netty:
+  fixedRecvByteBuf: 4096
+
+spring:
+  application:
+    name: itd-as
+  main:
+    allow-bean-definition-overriding: true
+  #数据库配置
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.kingbase8.Driver
+    jdbc-url: jdbc:kingbase8://%s:%s/itd?targetServerType=master&connectTimeout=2&socketTimeout=30&fastFailover=true
+    username: system
+    password: ats
+    #数据库连接池
+    hikari:
+      auto-commit: true
+      # connection-test-query: SELECT 1
+      #ORACLE替换
+      connection-test-query: SELECT 1
+      maximum-pool-size: 150
+      minimum-idle: 50
+      pool-name: hikari-pool
+      connection-timeout: 500
+      login-timeout: 500
+      validation-timeout: 2000
+      idle-timeout: 60000
+      max-lifetime: 120000
+      initialization-fail-timeout: 1000
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  type-aliases-package: com.tct.itd.entity
+  global-config:
+    db-config:
+      logic-delete-field: dr
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  configuration:
+    log-impl: org.apache.ibatis.logging.nologging.NoLoggingImpl #关闭sql日志
+
+iids:
+  ini:
+    deviceConfig: D:\ini12\device.xlsx
+    tcmsConfig: D:\ini12\as\TCMS.xlsx
+    sysParam: D:\ini12\sysParam.xml
+    cronConfig: D:\ini12\cronConfig.xml
+    itdFS: D:\ini12\FS\ITD.FS
+    trainGraphSysParam: D:\ini12\SystemParaData\SysParamDataClass.xml
+    flowchartDataConfig: D:\ini12\FlowchartDataConfig
+    cmdTemplate: D:\ini12\cmdTemplate.xml
+    aidDesStep: D:\ini12\aidDesStep.xml
+    checkConfig: D:\ini12\checkConfig.xml
+    alarmType: D:\ini12\alarmType.xml
+    roleMenuRelation: D:\ini12\roleMenuRelation.xml
+    
+#健康监控
+management:
+  metrics:
+    tags:
+      application: ${spring.application.name}
+      region: itd
+  endpoints:
+    web:
+      base-path: /actuator
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+gateway:
+  url: localhost:30800
+
+hls:
+  url: localhost:30800
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 30000
+        readTimeout: 500000
+  compression:
+    #请求和响应GZIP压缩支持
+    request:
+      enabled: true
+      mime-types: text/xml,application/xml,application/json
+      min-request-size: 1024
+    response:
+      enabled: true
+  #开启熔断
+  hystrix:
+    enabled: false
+  #使用okHttp线程池
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
+
+minio:
+  accessKey: admin
+  secretKey: admin123
+  bucketName: sz12
+
+
+
+#logging:
+#  config: E:\JavaProject\itd-ini-ces\itd-ini\12/as/log4j2-spring-as.xml

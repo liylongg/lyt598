@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Title</title>
+    <meta charset="UTF-8">
+    <!-- 引入 Bootstrap -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="./css/animate.css" rel="stylesheet">
+    <link href="./css/style.css?v=4.1.0" rel="stylesheet">
+    <link href="./css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="./css/fileinput.css" rel="stylesheet"/>
+    <link href="./css/fileinput-rtl.css" rel="stylesheet"/>
+</head>
+
+<script src="./js/jquery.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/moment-with-locales.min.js"></script>
+<script src="./js/bootstrap-datetimepicker.min.js"></script>
+<script src="./js/bootstrap-table.js"></script>
+<script src="./js/fileinput.js"></script>
+<script src="./js/zh.js"></script>
+<script src="./js/upload.js"></script>
+
+<body>
+<div class="jumbotron">
+    <table class="w-100" id="alarmInfoTable"></table>
+    <div class="modal fade bs-example-modal-lg" id="uploadWin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="false">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">上传文件</h4>
+                    <input hidden="hidden" id="uploadId"/>
+                </div>
+                <div class="modal-body">
+                    <input id="uploadFile" name="fileAddress" multiple type="file" accept="image/*,video/*"/>
+                </div>
+                <!--<div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" onclick="uploadFile()">提交</button>
+                </div>-->
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+</div>
+</body>
+<body>
+
+</body>
+</html>
